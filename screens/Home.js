@@ -3,9 +3,14 @@ import React from "react";
 import HeaderTabs from "../components/HeaderTabs";
 import SearchBar from "../components/SearchBar";
 import Categories from "../components/Categories";
-import RestaurantItem from "../components/RestaurantItem";
+import RestaurantItems, {
+  localRestaurants,
+} from "../components/RestaurantItems";
+
+const YEKP_API_KEY = "";
 
 export default function Home() {
+  const [restaurantData, setRestaurantData] = React.useState(localRestaurants);
   return (
     <SafeAreaView style={{ backgroundColor: "#eee", flex: 1 }}>
       <View style={{ backgroundColor: "white", padding: 15 }}>
@@ -14,7 +19,7 @@ export default function Home() {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <RestaurantItem />
+        <RestaurantItems restaurantData={restaurantData} />
       </ScrollView>
     </SafeAreaView>
   );
