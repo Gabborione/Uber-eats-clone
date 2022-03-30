@@ -5,9 +5,19 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 export default function SearchBar({ cityHandler }) {
+  const [input, setInput] = React.useState("");
+
+  const onChange = (text) => {
+    const newInput = text;
+    setInput((t) => (t = text));
+  };
+
   return (
     <View style={{ marginTop: 15, flexDirection: "row" }}>
       <GooglePlacesAutocomplete
+        textInputProps={{
+          onChangeText: (text) => onChange(text),
+        }}
         query={{ key: "AIzaSyDYUURT_jsOwWzu-RoeTZUEB0lvu1mxMGU" }}
         onPress={(data, details = null) => {
           const city =
@@ -38,7 +48,7 @@ export default function SearchBar({ cityHandler }) {
           </View>
         )}
         renderRightButton={() => (
-          <TouchableOpacity onPress={() => cityHandler("Milano")}>
+          <TouchableOpacity onPress={() => cityHandler(input)}>
             <View
               style={{
                 flexDirection: "row",
