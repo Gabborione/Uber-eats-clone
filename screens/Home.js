@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import HeaderTabs from "../components/home/HeaderTabs";
 import SearchBar from "../components/home/SearchBar";
@@ -8,6 +8,8 @@ import RestaurantItems, {
 } from "../components/home/RestaurantItems";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import BottomTabs from "../components/home/BottomTabs";
+import { SafeAreaView } from "react-native-safe-area-context";
+import "react-native-gesture-handler";
 
 const YELP_API_KEY =
   "_KNoDzseuiKY6gIwfoDa9IWg7VojLqpMjkZeYWuNs6JHCXGXPbxZJTmwmW0IQtrYyBtRtKrcylMyd22_ydep6tc2gKXi4h4gOF3cNwyZpU2sRmdIaVIInnZZAOFCYnYx";
