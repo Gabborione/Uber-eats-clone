@@ -1,16 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 
-const yelpRestaurantInfo = {
-  name: "Farmhouse Kitchen Thai Cuisine",
-  image:
-    "https://www.collinsdictionary.com/images/full/restaurant_135621509.jpg",
-  price: "$$",
-  reviews: "1500",
-  rating: "4.5",
-  categories: [{ title: "Thai" }, { title: "Comfort Food" }],
-};
-
 export default function About(props) {
   const { name, image, price, reviews, rating, categories } =
     props.route.params;
