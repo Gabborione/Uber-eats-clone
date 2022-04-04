@@ -46,27 +46,6 @@ const foods = [
     image:
       "https://primochef.it/wp-content/uploads/2020/09/SH_pollo_tandoori.jpg",
   },
-  {
-    title: "Tandoori Chicken",
-    description: "blobloblo",
-    price: "€19.20",
-    image:
-      "https://primochef.it/wp-content/uploads/2020/09/SH_pollo_tandoori.jpg",
-  },
-  {
-    title: "Lasagna",
-    description: "blablabla",
-    price: "€13.50",
-    image:
-      "https://wips.plug.it/cips/buonissimo.org/cms/2018/12/Lasagne-alla-bolognese-4.jpg",
-  },
-  {
-    title: "Tandoori Chicken",
-    description: "blobloblo",
-    price: "€19.20",
-    image:
-      "https://primochef.it/wp-content/uploads/2020/09/SH_pollo_tandoori.jpg",
-  },
 ];
 
 const styles = StyleSheet.create({

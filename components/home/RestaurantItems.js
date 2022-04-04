@@ -4,13 +4,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 export const localRestaurants = [
   {
-    name: "Poppy",
-    image_url:
-      "https://media-cdn.tripadvisor.com/media/photo-s/1b/67/cc/f8/chestnut-restaurant.jpg",
-    categories: ["Cafe", "Bar"],
-    price: "$$",
-    reviews: 123,
-    rating: 4.5,
+    name: "",
+    image_url: "",
+    categories: ["", ""],
+    price: "",
+    reviews: null,
+    rating: null,
   },
 ];
 
