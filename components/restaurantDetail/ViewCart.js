@@ -1,7 +1,21 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function ViewCart() {
+  const items = useSelector((state) => state.cartReducer.selectedItems.items);
+
+  const total = items
+    .map((item) => Number(item.price.replace("€", "")))
+    .reduce((prev, curr) => prev + curr, 0);
+
+  const totalEUR = total.toLocaleString("en", {
+    style: "currency",
+    currency: "USD",
+  });
+
+  console.log(totalEUR);
+
   return (
     <>
       <View
