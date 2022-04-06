@@ -2,48 +2,48 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import React from "react";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const foods = [
   {
     title: "Lasagna",
     description: "blablabla",
-    price: "€13.50",
+    price: "$13.50",
     image:
       "https://wips.plug.it/cips/buonissimo.org/cms/2018/12/Lasagne-alla-bolognese-4.jpg",
   },
   {
     title: "Tandoori Chicken",
     description: "blobloblo",
-    price: "€19.20",
+    price: "$19.20",
     image:
       "https://primochef.it/wp-content/uploads/2020/09/SH_pollo_tandoori.jpg",
   },
   {
     title: "Lasagna",
     description: "blablabla",
-    price: "€13.50",
+    price: "$13.50",
     image:
       "https://wips.plug.it/cips/buonissimo.org/cms/2018/12/Lasagne-alla-bolognese-4.jpg",
   },
   {
     title: "Tandoori Chicken",
     description: "blobloblo",
-    price: "€19.20",
+    price: "$19.20",
     image:
       "https://primochef.it/wp-content/uploads/2020/09/SH_pollo_tandoori.jpg",
   },
   {
     title: "Lasagna",
     description: "blablabla",
-    price: "€13.50",
+    price: "$13.50",
     image:
       "https://wips.plug.it/cips/buonissimo.org/cms/2018/12/Lasagne-alla-bolognese-4.jpg",
   },
   {
     title: "Tandoori Chicken",
     description: "blobloblo",
-    price: "€19.20",
+    price: "$19.20",
     image:
       "https://primochef.it/wp-content/uploads/2020/09/SH_pollo_tandoori.jpg",
   },
@@ -73,6 +73,13 @@ export default function MenuItems({ restaurantName }) {
       },
     });
 
+  const cartItems = useSelector(
+    (state) => state.cartReducer.selectedItems.items
+  );
+
+  const isFoodInCart = (food, cartItem) =>
+    Boolean(cartItems.find((item) => item.title === food.title));
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       {foods.map((food, index) => (
@@ -82,6 +89,7 @@ export default function MenuItems({ restaurantName }) {
               iconStyle={{ borderColor: "lightgray", borderRadius: 0 }}
               fillColor="green"
               onPress={(checkboxValue) => selectItem(food, checkboxValue)}
+              isChecked={isFoodInCart(food, cartItems)}
             />
             <FoodInfo food={food} />
             <FoodImage food={food} />

@@ -6,52 +6,54 @@ export default function ViewCart() {
   const items = useSelector((state) => state.cartReducer.selectedItems.items);
 
   const total = items
-    .map((item) => Number(item.price.replace("€", "")))
+    .map((item) => Number(item.price.replace("$", "")))
     .reduce((prev, curr) => prev + curr, 0);
-
-  const totalEUR = total.toLocaleString("en", {
-    style: "currency",
-    currency: "USD",
-  });
-
-  console.log(totalEUR);
 
   return (
     <>
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "row",
-          position: "absolute",
-          justifyContent: "center",
-          alignItems: "center",
-          top: 730,
-          zIndex: 999,
-        }}
-      >
+      {total ? (
         <View
           style={{
+            flex: 1,
             flexDirection: "row",
+            position: "absolute",
             justifyContent: "center",
-            width: "100%",
+            alignItems: "center",
+            top: 730,
+            zIndex: 999,
           }}
         >
-          <TouchableOpacity
+          <View
             style={{
-              marginTop: 20,
-              backgroundColor: "black",
               flexDirection: "row",
               justifyContent: "center",
-              padding: 15,
-              width: 300,
-              position: "relative",
-              borderRadius: 30,
+              width: "100%",
             }}
           >
-            <Text style={{ color: "white", fontSize: 20 }}>View Cart</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                marginTop: 20,
+                backgroundColor: "black",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                padding: 15,
+                width: 300,
+                position: "relative",
+                borderRadius: 30,
+              }}
+            >
+              <Text style={{ color: "white", fontSize: 20, marginRight: 30 }}>
+                View Cart
+              </Text>
+              <Text style={{ color: "white", fontSize: 20, marginRight: 5 }}>
+                ${total}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      ) : (
+        <></>
+      )}
     </>
   );
 }
