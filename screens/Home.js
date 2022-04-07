@@ -27,6 +27,7 @@ export default function Home({ navigation }) {
         Authorization: `Bearer ${YELP_API_KEY}`,
       },
     };
+
     return fetch(yelpUrl, apiOptions)
       .then((res) => res.json())
       .then((json) =>
@@ -43,20 +44,22 @@ export default function Home({ navigation }) {
   }, [city, activeTab]);
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#eee", flex: 1 }}>
-      <View style={{ backgroundColor: "white", padding: 15 }}>
-        <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-        <SearchBar cityHandler={setCity} />
+    <>
+      <View style={{ backgroundColor: "#eee", flex: 1 }}>
+        <View style={{ backgroundColor: "white", padding: 15 }}>
+          <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          <SearchBar cityHandler={setCity} />
+        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Categories />
+          <RestaurantItems
+            restaurantData={restaurantData}
+            navigation={navigation}
+          />
+        </ScrollView>
+        <Divider width={1} />
+        <BottomTabs />
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Categories />
-        <RestaurantItems
-          restaurantData={restaurantData}
-          navigation={navigation}
-        />
-      </ScrollView>
-      <Divider width={1} />
-      <BottomTabs />
-    </SafeAreaView>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
+import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 
 export default function About(props) {
   const { name, image, price, reviews, rating, categories } =
@@ -12,6 +13,13 @@ export default function About(props) {
   }  •  ${rating}⭐ (${reviews}+)`;
   return (
     <View>
+      <View
+        style={{
+          backgroundColor: "black",
+          flex: 1,
+          justifyContent: "flex-end",
+        }}
+      ></View>
       <RestaurantImage image={image} />
       <RestaurantName name={name} />
       <RestaurantDescription description={description} />

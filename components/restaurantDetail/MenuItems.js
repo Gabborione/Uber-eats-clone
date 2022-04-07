@@ -77,7 +77,7 @@ export default function MenuItems({ restaurantName }) {
     (state) => state.cartReducer.selectedItems.items
   );
 
-  const isFoodInCart = (food, cartItem) =>
+  const isFoodInCart = (food, cartItems) =>
     Boolean(cartItems.find((item) => item.title === food.title));
 
   return (
