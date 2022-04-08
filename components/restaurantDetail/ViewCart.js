@@ -1,6 +1,8 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import OrderItem from "./OrderItem";
+import firebase from "../../firebase";
 
 export default function ViewCart() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -12,6 +14,17 @@ export default function ViewCart() {
   const total = items
     .map((item) => Number(item.price.replace("$", "")))
     .reduce((prev, curr) => prev + curr, 0);
+
+  const addOrderToFirebase = () => {
+    const db = firebase.getFirestore();
+
+    const colRef = collection(db, "orders").add({
+      items: items,
+      restaurantName: restaurantName,
+      createdAt: firebase.firestore.FieldValue.serverTimes(),
+    });
+    setModalVisible(false);
+  };
 
   const styles = StyleSheet.create({
     modalContainer: {
@@ -49,6 +62,44 @@ export default function ViewCart() {
       <View style={styles.modalContainer}>
         <View style={styles.modalCheckoutContainer}>
           <Text style={styles.restaurantName}>{restaurantName}</Text>
+          {items.map((item, index) => (
+            <OrderItem key={index} item={item} />
+          ))}
+          <View style={styles.subtotalContainer}>
+            <Text style={styles.subTotalText}>Subtotal</Text>
+            <Text style={styles.subTotalText}>${total}</Text>
+          </View>
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <TouchableOpacity
+              style={{
+                marginTop: 20,
+                backgroundColor: "black",
+                alignItems: "center",
+                padding: 13,
+                borderRadius: 30,
+                width: 300,
+                position: "relative",
+              }}
+              onPress={() => {
+                {
+                  addOrderToFirebase();
+                }
+              }}
+            >
+              <Text style={{ color: "white", fontSize: 20 }}>Checkout</Text>
+              <Text
+                style={{
+                  position: "absolute",
+                  right: 20,
+                  color: "white",
+                  fontSize: 15,
+                  top: 17,
+                }}
+              >
+                {total ? `$${total}` : ""}
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
